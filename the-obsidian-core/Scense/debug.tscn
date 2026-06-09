@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://cm0or3uelhvuy"]
+
+[ext_resource type="PackedScene" uid="uid://14oev5uimi7p" path="res://Entities/Player/player.tscn" id="1_rcqxi"]
+[ext_resource type="PackedScene" uid="uid://ctpbrht1ikqob" path="res://Entities/Sign/sign.tscn" id="2_gyd0f"]
+
+[node name="Debug" type="Node2D" unique_id=1986857476]
+
+[node name="Player" parent="." unique_id=894781959 instance=ExtResource("1_rcqxi")]
+position = Vector2(56, 56)
+
+[node name="Sign" parent="." unique_id=1479825750 instance=ExtResource("2_gyd0f")]
+position = Vector2(56, 72)
+SignMessage = "test"

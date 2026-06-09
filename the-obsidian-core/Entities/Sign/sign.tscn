@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://ctpbrht1ikqob"]
+
+[ext_resource type="Script" uid="uid://btm88ctabp6xw" path="res://Entities/Sign/sign.gd" id="1_ki7cl"]
+[ext_resource type="PackedScene" uid="uid://doompnyv8s7kh" path="res://Componets/interactable.tscn" id="1_wp7kx"]
+
+[node name="Sign" type="Node2D" unique_id=1479825750]
+script = ExtResource("1_ki7cl")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1076742174]
+offset_left = -8.0
+offset_top = -8.0
+offset_right = 8.0
+offset_bottom = 8.0
+color = Color(0.76051307, 0.61523056, 0.5368168, 1)
+
+[node name="Interactable" parent="." unique_id=256458991 instance=ExtResource("1_wp7kx")]
+
+[connection signal="TriggerInteraction" from="Interactable" to="." method="_on_interactable_trigger_interaction"]
