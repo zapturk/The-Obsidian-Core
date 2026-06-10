@@ -5,7 +5,7 @@ var IsMoving := false
 var CurrentDir := Vector2.DOWN
 
 @onready var interactRay := $Interact
-@onready var solidDectector := $SolidDetector
+@onready var solidDetector := $SolidDetector
 
 func _ready() -> void:
 	UpdateInteractDir()
@@ -43,13 +43,11 @@ func _physics_process(_delta: float) -> void:
 		TryMove(direction)
 
 func UpdateInteractDir() -> void:
-	interactRay.target_position = CurrentDir * Global.TILE_SIZE
-	
-	solidDectector.target_position = CurrentDir * Global.TILE_SIZE
+	interactRay.SetTargetPosition(CurrentDir * Global.TILE_SIZE)
+	solidDetector.SetTargetPosition(CurrentDir * Global.TILE_SIZE)
 
 func TryMove(direction: Vector2) -> void:
-	solidDectector.target_position = direction * Global.TILE_SIZE
-	if solidDectector.is_solid_ahead():
+	if solidDetector.IsSolidAhead():
 		return
 
 	var nextPos = position + (direction * Global.TILE_SIZE)
