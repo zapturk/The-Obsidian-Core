@@ -1,22 +1,21 @@
 extends Node2D
 
-# Constants
-const TILE_SIZE = 16
-
 # State variables
-var is_moving: bool = false
-var current_direction: Vector2 = Vector2.DOWN
+var IsMoving := false
+var CurrentDir := Vector2.DOWN
+
+@onready var interactRay := $Interact
+@onready var solidDectector := $SolidDetector
 
 func _ready() -> void:
-	update_interact_direction()
+	UpdateInteractDir()
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_accept"):
-		if has_node("Interact"):
-			$Interact.CheckForInteraction()
+		interactRay.CheckForInteraction()
 
 func _physics_process(_delta: float) -> void:
-	if is_moving:
+	if IsMoving:
 		return
 
 	var direction = Vector2.ZERO
@@ -39,20 +38,25 @@ func _physics_process(_delta: float) -> void:
 		else:
 			direction = direction.normalized()
 
-		current_direction = direction
-		update_interact_direction()
-		try_move(direction)
+		CurrentDir = direction
+		UpdateInteractDir()
+		TryMove(direction)
 
-func update_interact_direction() -> void:
-	if has_node("Interact"):
-		$Interact.target_position = current_direction * TILE_SIZE
+func UpdateInteractDir() -> void:
+	interactRay.target_position = CurrentDir * Global.TILE_SIZE
+	
+	solidDectector.target_position = CurrentDir * Global.TILE_SIZE
 
-func try_move(direction: Vector2) -> void:
-	var next_pos = position + (direction * TILE_SIZE)
-	move_to(next_pos)
+func TryMove(direction: Vector2) -> void:
+	solidDectector.target_position = direction * Global.TILE_SIZE
+	if solidDectector.is_solid_ahead():
+		return
 
-func move_to(new_pos: Vector2) -> void:
-	is_moving = true
+	var nextPos = position + (direction * Global.TILE_SIZE)
+	MoveTo(nextPos)
+
+func MoveTo(new_pos: Vector2) -> void:
+	IsMoving = true
 	var tween = create_tween()
 	tween.tween_property(self, "position", new_pos, 0.2).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
-	tween.finished.connect(func(): is_moving = false)
+	tween.finished.connect(func(): IsMoving = false)
