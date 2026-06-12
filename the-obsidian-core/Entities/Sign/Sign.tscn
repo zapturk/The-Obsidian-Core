@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://ctpbrht1ikqob"]
+[gd_scene format=3 uid="uid://ccrxg04p7n8qe"]
 
 [ext_resource type="Script" uid="uid://btm88ctabp6xw" path="res://Entities/Sign/Sign.gd" id="1_ki7cl"]
 [ext_resource type="PackedScene" uid="uid://doompnyv8s7kh" path="res://Componets/Interactable.tscn" id="2_interact"]
