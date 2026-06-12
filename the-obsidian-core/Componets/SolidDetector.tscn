@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://placeholder"]
+
+[ext_resource type="Script" uid="uid://bbveoygjnujxl" path="res://Componets/SolidDetector.gd" id="1_detector"]
+
+[node name="SolidDetector" type="RayCast2D" unique_id=666955636]
+target_position = Vector2(0, 16)
+collide_with_areas = true
+script = ExtResource("1_detector")
