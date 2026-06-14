@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://bl7757gv1pl22"]
 
-[ext_resource type="Script" uid="uid://cx0c6iaed6o2r" path="res://Componets/Interact.gd" id="1_e28x3"]
+[ext_resource type="Script" uid="uid://b1gs7pw1a87kc" path="res://Componets/Interact.gd" id="1_e28x3"]
 
 [node name="Interact" type="RayCast2D" unique_id=101315646]
 target_position = Vector2(0, 16)

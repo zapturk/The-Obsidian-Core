@@ -1,21 +1,18 @@
 [gd_scene format=3 uid="uid://ccrxg04p7n8qe"]
 
-[ext_resource type="Script" uid="uid://btm88ctabp6xw" path="res://Entities/Sign/Sign.gd" id="1_ki7cl"]
-[ext_resource type="PackedScene" uid="uid://doompnyv8s7kh" path="res://Componets/Interactable.tscn" id="2_interact"]
+[ext_resource type="Script" uid="uid://dcxm3kb7v8jvl" path="res://Entities/Sign/Sign.gd" id="1_ki7cl"]
+[ext_resource type="Texture2D" uid="uid://bb2ul413b3i0q" path="res://Entities/Sign/Sign.png" id="2_bh20p"]
+[ext_resource type="PackedScene" uid="uid://cjhe52qk17yol" path="res://Componets/Interactable.tscn" id="2_interact"]
 [ext_resource type="PackedScene" uid="uid://ditcrqudoge2q" path="res://Componets/Solid.tscn" id="3_nddpb"]
 
 [node name="Sign" type="Node2D" unique_id=1479825750]
 script = ExtResource("1_ki7cl")
 
-[node name="ColorRect" type="ColorRect" parent="." unique_id=1076742174]
-offset_left = -8.0
-offset_top = -8.0
-offset_right = 8.0
-offset_bottom = 8.0
-color = Color(0.76051307, 0.61523056, 0.5368168, 1)
-
 [node name="Interactable" parent="." unique_id=256458991 instance=ExtResource("2_interact")]
 
 [node name="Solid" parent="." unique_id=2071102921 instance=ExtResource("3_nddpb")]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1147165006]
+texture = ExtResource("2_bh20p")
 
 [connection signal="TriggerInteraction" from="Interactable" to="." method="_on_interactable_trigger_interaction"]
