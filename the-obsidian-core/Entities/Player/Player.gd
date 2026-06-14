@@ -2,7 +2,7 @@ class_name Player extends Node2D
 
 enum PlayerStates {
 	None,
-	Trun,
+	Turn,
 	Moving,
 	Idle,
 	Talk
@@ -29,8 +29,6 @@ func _input(event: InputEvent) -> void:
 func _physics_process(_delta: float) -> void:
 	if state == PlayerStates.Moving:
 		return
-	else:
-		sprite.play("Idle" + getAniDir(CurrentDir))
 
 	var direction = Vector2.ZERO
 	if Input.is_action_pressed("ui_up"):
@@ -70,10 +68,11 @@ func TryMove(direction: Vector2) -> void:
 func MoveTo(dir: Vector2) -> void:
 	state = PlayerStates.Moving
 	sprite.play("Walk" + getAniDir(dir))
-	var tween = get_tree().create_tween()
+	var tween = create_tween()
 	tween.tween_property(self, "position", position + (dir * Global.TILE_SIZE), 1.0 / animationSpeed)
 	await tween.finished
 	state = PlayerStates.Idle
+	sprite.play("Idle" + getAniDir(CurrentDir))
 
 func getAniDir(dir: Vector2) -> String:
 	match dir:
