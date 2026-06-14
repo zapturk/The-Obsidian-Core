@@ -3,16 +3,146 @@
 [ext_resource type="Script" uid="uid://7v87sc1gtouo" path="res://Entities/Player/Player.gd" id="1_vweq0"]
 [ext_resource type="PackedScene" uid="uid://bl7757gv1pl22" path="res://Componets/Interact.tscn" id="2_1des2"]
 [ext_resource type="PackedScene" uid="uid://placeholder" path="res://Componets/SolidDetector.tscn" id="3_an6q6"]
+[ext_resource type="Texture2D" uid="uid://d4gm6yvmkgv0d" path="res://Entities/Player/Assets/sprZinkWalkS.png" id="4_1des2"]
+[ext_resource type="Texture2D" uid="uid://ec8ygb3tpdjn" path="res://Entities/Player/Assets/sprZinkWalkW.png" id="5_hj1c0"]
+[ext_resource type="Texture2D" uid="uid://m2crqt1h6c8w" path="res://Entities/Player/Assets/sprZinkWalkE.png" id="6_x44r4"]
+[ext_resource type="Texture2D" uid="uid://nwmohsehcqtr" path="res://Entities/Player/Assets/sprZinkWalkN.png" id="7_761t5"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_an6q6"]
+atlas = ExtResource("4_1des2")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hacra"]
+atlas = ExtResource("5_hj1c0")
+region = Rect2(48, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jynvv"]
+atlas = ExtResource("6_x44r4")
+region = Rect2(48, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lmeus"]
+atlas = ExtResource("7_761t5")
+region = Rect2(48, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hj1c0"]
+atlas = ExtResource("4_1des2")
+region = Rect2(48, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t38ms"]
+atlas = ExtResource("4_1des2")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x44r4"]
+atlas = ExtResource("5_hj1c0")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_761t5"]
+atlas = ExtResource("5_hj1c0")
+region = Rect2(48, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_061yh"]
+atlas = ExtResource("6_x44r4")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uw7o4"]
+atlas = ExtResource("6_x44r4")
+region = Rect2(48, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gallu"]
+atlas = ExtResource("7_761t5")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_samso"]
+atlas = ExtResource("7_761t5")
+region = Rect2(48, 0, 48, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_x44r4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_an6q6")
+}],
+"loop": true,
+"name": &"IdleDown",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hacra")
+}],
+"loop": true,
+"name": &"IdleLeft",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jynvv")
+}],
+"loop": true,
+"name": &"IdleRight",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lmeus")
+}],
+"loop": true,
+"name": &"IdleUp",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hj1c0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t38ms")
+}],
+"loop": true,
+"name": &"WalkDown",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x44r4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_761t5")
+}],
+"loop": true,
+"name": &"WalkLeft",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_061yh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uw7o4")
+}],
+"loop": true,
+"name": &"WalkRight",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gallu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_samso")
+}],
+"loop": true,
+"name": &"WalkUp",
+"speed": 5.0
+}]
 
 [node name="Player" type="Node2D" unique_id=894781959]
 script = ExtResource("1_vweq0")
 
-[node name="ColorRect" type="ColorRect" parent="." unique_id=792342596]
-offset_left = -8.0
-offset_top = -8.0
-offset_right = 8.0
-offset_bottom = 8.0
-
 [node name="Interact" parent="." unique_id=101315646 instance=ExtResource("2_1des2")]
 
 [node name="SolidDetector" parent="." unique_id=666955636 instance=ExtResource("3_an6q6")]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=198061601]
+sprite_frames = SubResource("SpriteFrames_x44r4")
+animation = &"WalkLeft"
+autoplay = "IdleDown"

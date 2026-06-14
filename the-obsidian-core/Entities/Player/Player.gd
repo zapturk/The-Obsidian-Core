@@ -1,11 +1,23 @@
-extends Node2D
+class_name Player extends Node2D
+
+enum PlayerStates {
+	None,
+	Trun,
+	Moving,
+	Idle,
+	Talk
+}
 
 # State variables
 var IsMoving := false
 var CurrentDir := Vector2.DOWN
+var animationSpeed := 3
+var state := PlayerStates.Idle
 
 @onready var interactRay := $Interact
 @onready var solidDetector := $SolidDetector
+@onready var sprite := $AnimatedSprite2D
+
 
 func _ready() -> void:
 	UpdateInteractDir()
@@ -15,8 +27,10 @@ func _input(event: InputEvent) -> void:
 		interactRay.CheckForInteraction()
 
 func _physics_process(_delta: float) -> void:
-	if IsMoving:
+	if state == PlayerStates.Moving:
 		return
+	else:
+		sprite.play("Idle" + getAniDir(CurrentDir))
 
 	var direction = Vector2.ZERO
 	if Input.is_action_pressed("ui_up"):
@@ -50,11 +64,27 @@ func TryMove(direction: Vector2) -> void:
 	if solidDetector.IsSolidAhead():
 		return
 
-	var nextPos = position + (direction * Global.TILE_SIZE)
-	MoveTo(nextPos)
+	MoveTo(direction)
+	
 
-func MoveTo(new_pos: Vector2) -> void:
-	IsMoving = true
-	var tween = create_tween()
-	tween.tween_property(self, "position", new_pos, 0.2).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
-	tween.finished.connect(func(): IsMoving = false)
+func MoveTo(dir: Vector2) -> void:
+	state = PlayerStates.Moving
+	sprite.play("Walk" + getAniDir(dir))
+	var tween = get_tree().create_tween()
+	tween.tween_property(self, "position", position + (dir * Global.TILE_SIZE), 1.0 / animationSpeed)
+	await tween.finished
+	state = PlayerStates.Idle
+
+func getAniDir(dir: Vector2) -> String:
+	match dir:
+		Vector2.RIGHT:
+			return "Right"
+		Vector2.UP:
+			return "Up"
+		Vector2.DOWN:
+			return "Down"
+		Vector2.LEFT:
+			return "Left"
+		_:
+			return "Down"
+	
