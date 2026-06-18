@@ -27,7 +27,7 @@ func _input(event: InputEvent) -> void:
 		interactRay.CheckForInteraction()
 
 func _physics_process(_delta: float) -> void:
-	if state == PlayerStates.Moving:
+	if state == PlayerStates.Moving || state == PlayerStates.None:
 		return
 
 	var direction = Vector2.ZERO
@@ -60,6 +60,7 @@ func UpdateInteractDir() -> void:
 
 func TryMove(direction: Vector2) -> void:
 	if solidDetector.IsSolidAhead():
+		sprite.play("Idle" + getAniDir(CurrentDir))
 		return
 
 	MoveTo(direction)

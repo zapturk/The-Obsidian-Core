@@ -144,5 +144,21 @@ script = ExtResource("1_vweq0")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=198061601]
 sprite_frames = SubResource("SpriteFrames_x44r4")
-animation = &"WalkLeft"
+animation = &"IdleDown"
 autoplay = "IdleDown"
+
+[node name="TopPos" type="Marker2D" parent="." unique_id=260804678]
+position = Vector2(0, -7)
+gizmo_extents = 0.0
+
+[node name="RightPos" type="Marker2D" parent="." unique_id=1466128222]
+position = Vector2(7, 0)
+gizmo_extents = 0.0
+
+[node name="BottomPos" type="Marker2D" parent="." unique_id=381628812]
+position = Vector2(0, 7)
+gizmo_extents = 0.0
+
+[node name="LeftPos" type="Marker2D" parent="." unique_id=1347029705]
+position = Vector2(-7, 0)
+gizmo_extents = 0.0
