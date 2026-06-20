@@ -1,0 +1,22 @@
+{
+  "mcpServers": {
+    "godot": {
+      "command": "npx",
+      "args": [
+        "@coding-solo/godot-mcp"
+      ],
+      "env": {
+        "GODOT_PATH": "/opt/homebrew/bin/godot",
+        "DEBUG": "true"
+      },
+      "directTools": false
+    },
+    "godot-runtime": {
+      "command": "godot-mcp-runtime",
+      "env": {
+        "GODOT_PATH": "/opt/homebrew/bin/godot"
+      },
+      "directTools": true
+    }
+  }
+}

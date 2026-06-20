@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://placeholder"]
+[gd_scene format=3 uid="uid://xcq36bahmjtm"]
 
 [ext_resource type="Script" uid="uid://bbveoygjnujxl" path="res://Componets/SolidDetector.gd" id="1_detector"]
 

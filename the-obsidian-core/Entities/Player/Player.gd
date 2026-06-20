@@ -10,6 +10,7 @@ enum PlayerStates {
 
 # State variables
 var IsMoving := false
+var CamIsMoving := false
 var CurrentDir := Vector2.DOWN
 var animationSpeed := 3
 var state := PlayerStates.Idle
@@ -18,9 +19,17 @@ var state := PlayerStates.Idle
 @onready var solidDetector := $SolidDetector
 @onready var sprite := $AnimatedSprite2D
 
+#exposed so the camera knows when to move
+@onready var TopPos := $TopPos
+@onready var RightPos := $RightPos
+@onready var BottomPos := $BottomPos
+@onready var LeftPos := $LeftPos
+
 
 func _ready() -> void:
 	UpdateInteractDir()
+	EventBus.CamScrollStarted.connect(CamScrollStart)
+	EventBus.CamScrollCompleted.connect(CamScrollEnd)
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_accept"):
@@ -72,7 +81,8 @@ func MoveTo(dir: Vector2) -> void:
 	var tween = create_tween()
 	tween.tween_property(self, "position", position + (dir * Global.TILE_SIZE), 1.0 / animationSpeed)
 	await tween.finished
-	state = PlayerStates.Idle
+	if !CamIsMoving:
+		state = PlayerStates.Idle
 	sprite.play("Idle" + getAniDir(CurrentDir))
 
 func getAniDir(dir: Vector2) -> String:
@@ -88,3 +98,10 @@ func getAniDir(dir: Vector2) -> String:
 		_:
 			return "Down"
 	
+
+func CamScrollStart() -> void:
+	CamIsMoving = true
+
+func CamScrollEnd() -> void:
+	CamIsMoving = false
+	state = PlayerStates.Idle

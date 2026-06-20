@@ -1,9 +1,9 @@
-[gd_scene format=3 uid="uid://ccrxg04p7n8qe"]
+[gd_scene format=3 uid="uid://obkr0faiio8u"]
 
 [ext_resource type="Script" uid="uid://dcxm3kb7v8jvl" path="res://Entities/Sign/Sign.gd" id="1_ki7cl"]
 [ext_resource type="Texture2D" uid="uid://bb2ul413b3i0q" path="res://Entities/Sign/Sign.png" id="2_bh20p"]
-[ext_resource type="PackedScene" uid="uid://cjhe52qk17yol" path="res://Componets/Interactable.tscn" id="2_interact"]
-[ext_resource type="PackedScene" uid="uid://ditcrqudoge2q" path="res://Componets/Solid.tscn" id="3_nddpb"]
+[ext_resource type="PackedScene" uid="uid://dxivmgyusrhbd" path="res://Componets/Interactable.tscn" id="2_interact"]
+[ext_resource type="PackedScene" uid="uid://b1ep6m0qfi870" path="res://Componets/Solid.tscn" id="3_nddpb"]
 
 [node name="Sign" type="Node2D" unique_id=1479825750]
 script = ExtResource("1_ki7cl")
