@@ -135,7 +135,12 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Player" type="Node2D" unique_id=894781959]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4pqwa"]
+size = Vector2(1, 1)
+
+[node name="Player" type="CharacterBody2D" unique_id=632971679]
+collision_layer = 4
+collision_mask = 4
 script = ExtResource("1_vweq0")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=198061601]
@@ -162,3 +167,6 @@ gizmo_extents = 0.0
 [node name="Interact" parent="." unique_id=101315646 instance=ExtResource("2_1des2")]
 
 [node name="SolidDetector" parent="." unique_id=666955636 instance=ExtResource("3_an6q6")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=738956248]
+shape = SubResource("RectangleShape2D_4pqwa")
