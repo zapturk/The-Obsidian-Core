@@ -1,9 +1,13 @@
 [gd_scene format=3 uid="uid://b1ep6m0qfi870"]
 
+[ext_resource type="Script" uid="uid://dx2g28m7p4lpa" path="res://Componets/solid.gd" id="1_pnph5"]
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5gvjh"]
 size = Vector2(16, 16)
 
 [node name="Solid" type="Area2D" unique_id=2071102921]
+collision_mask = 0
+script = ExtResource("1_pnph5")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=531351868]
 shape = SubResource("RectangleShape2D_5gvjh")
