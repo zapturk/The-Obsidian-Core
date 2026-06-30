@@ -1,14 +1,23 @@
 class_name Room
 extends Node2D
 
-#@onready var door_up = $DoorsUp
-#@onready var door_down = $DoorsDown
-#@onready var door_left = $Doors/Left
-#@onready var door_right = $Doors/Right
-
 func setup_doors(neighbors: Array) -> void:
-	print(neighbors)
-	#door_up.visible = neighbors.contains(Vector2i.UP)
-	#door_down.visible = neighbors.contains(Vector2i.DOWN)
-	#door_left.visible = neighbors.contains(Vector2i.LEFT)
-	#door_right.visible = neighbors.contains(Vector2i.RIGHT)
+	if neighbors.has(Vector2i.UP):
+		$DoorTop.SetDoorType(Types.DoorType.None)
+	else:
+		$DoorTop.SetDoorType(Types.DoorType.Wall)
+	
+	if neighbors.has(Vector2i.RIGHT):
+		$DoorRight.SetDoorType(Types.DoorType.None)
+	else:
+		$DoorRight.SetDoorType(Types.DoorType.Wall)
+		
+	if neighbors.has(Vector2i.DOWN):
+		$DoorDown.SetDoorType(Types.DoorType.None)
+	else:
+		$DoorDown.SetDoorType(Types.DoorType.Wall)
+		
+	if neighbors.has(Vector2i.LEFT):
+		$DoorLeft.SetDoorType(Types.DoorType.None)
+	else:
+		$DoorLeft.SetDoorType(Types.DoorType.Wall)
