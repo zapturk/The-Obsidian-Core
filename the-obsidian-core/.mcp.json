@@ -1,0 +1,61 @@
+{
+  "mcpServers": {
+    "godot": {
+      "command": "npx",
+      "args": [
+        "@coding-solo/godot-mcp"
+      ],
+      "env": {
+        "GODOT_PATH": "/opt/homebrew/bin/godot",
+        "DEBUG": "true"
+      },
+      "directTools": [
+        "run_project"
+      ]
+    },
+    "godot-runtime": {
+      "command": "godot-mcp-runtime",
+      "env": {
+        "GODOT_PATH": "/opt/homebrew/bin/godot",
+        "DEBUG": "true"
+      },
+      "directTools": [
+        "launch_editor",
+        "attach_project",
+        "detach_project",
+        "get_debug_output",
+        "stop_project",
+        "take_screenshot",
+        "simulate_input",
+        "get_ui_elements",
+        "run_script",
+        "list_autoloads",
+        "add_autoload",
+        "remove_autoload",
+        "update_autoload",
+        "list_projects",
+        "get_project_info",
+        "get_project_files",
+        "search_project",
+        "get_scene_dependencies",
+        "get_project_settings",
+        "create_scene",
+        "add_node",
+        "load_sprite",
+        "save_scene",
+        "export_mesh_library",
+        "batch_scene_operations",
+        "delete_nodes",
+        "set_node_properties",
+        "get_node_properties",
+        "attach_script",
+        "get_scene_tree",
+        "duplicate_node",
+        "get_node_signals",
+        "connect_signal",
+        "disconnect_signal",
+        "validate"
+      ]
+    }
+  }
+}

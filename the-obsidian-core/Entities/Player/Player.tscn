@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://dkyls1p1tg4m8"]
 
 [ext_resource type="Script" uid="uid://7v87sc1gtouo" path="res://Entities/Player/Player.gd" id="1_vweq0"]
-[ext_resource type="PackedScene" uid="uid://bl7757gv1pl22" path="res://Componets/Interact.tscn" id="2_1des2"]
-[ext_resource type="PackedScene" uid="uid://placeholder" path="res://Componets/SolidDetector.tscn" id="3_an6q6"]
+[ext_resource type="PackedScene" uid="uid://c8lg1mkqfapce" path="res://Componets/Interact.tscn" id="2_1des2"]
+[ext_resource type="PackedScene" uid="uid://xcq36bahmjtm" path="res://Componets/SolidDetector.tscn" id="3_an6q6"]
 [ext_resource type="Texture2D" uid="uid://d4gm6yvmkgv0d" path="res://Entities/Player/Assets/sprZinkWalkS.png" id="4_1des2"]
 [ext_resource type="Texture2D" uid="uid://ec8ygb3tpdjn" path="res://Entities/Player/Assets/sprZinkWalkW.png" id="5_hj1c0"]
 [ext_resource type="Texture2D" uid="uid://m2crqt1h6c8w" path="res://Entities/Player/Assets/sprZinkWalkE.png" id="6_x44r4"]
@@ -62,7 +62,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_an6q6")
 }],
-"loop": true,
+"loop": 1,
 "name": &"IdleDown",
 "speed": 5.0
 }, {
@@ -70,7 +70,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_hacra")
 }],
-"loop": true,
+"loop": 1,
 "name": &"IdleLeft",
 "speed": 5.0
 }, {
@@ -78,7 +78,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_jynvv")
 }],
-"loop": true,
+"loop": 1,
 "name": &"IdleRight",
 "speed": 5.0
 }, {
@@ -86,7 +86,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_lmeus")
 }],
-"loop": true,
+"loop": 1,
 "name": &"IdleUp",
 "speed": 5.0
 }, {
@@ -97,7 +97,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_t38ms")
 }],
-"loop": true,
+"loop": 1,
 "name": &"WalkDown",
 "speed": 5.0
 }, {
@@ -108,7 +108,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_761t5")
 }],
-"loop": true,
+"loop": 1,
 "name": &"WalkLeft",
 "speed": 5.0
 }, {
@@ -119,7 +119,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_uw7o4")
 }],
-"loop": true,
+"loop": 1,
 "name": &"WalkRight",
 "speed": 5.0
 }, {
@@ -130,19 +130,43 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_samso")
 }],
-"loop": true,
+"loop": 1,
 "name": &"WalkUp",
 "speed": 5.0
 }]
 
-[node name="Player" type="Node2D" unique_id=894781959]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4pqwa"]
+size = Vector2(1, 1)
+
+[node name="Player" type="CharacterBody2D" unique_id=632971679]
+collision_layer = 4
+collision_mask = 4
 script = ExtResource("1_vweq0")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=198061601]
+sprite_frames = SubResource("SpriteFrames_x44r4")
+animation = &"IdleDown"
+autoplay = "IdleDown"
+
+[node name="TopPos" type="Marker2D" parent="." unique_id=260804678]
+position = Vector2(0, -7)
+gizmo_extents = 0.0
+
+[node name="RightPos" type="Marker2D" parent="." unique_id=1466128222]
+position = Vector2(7, 0)
+gizmo_extents = 0.0
+
+[node name="BottomPos" type="Marker2D" parent="." unique_id=381628812]
+position = Vector2(0, 7)
+gizmo_extents = 0.0
+
+[node name="LeftPos" type="Marker2D" parent="." unique_id=1347029705]
+position = Vector2(-7, 0)
+gizmo_extents = 0.0
 
 [node name="Interact" parent="." unique_id=101315646 instance=ExtResource("2_1des2")]
 
 [node name="SolidDetector" parent="." unique_id=666955636 instance=ExtResource("3_an6q6")]
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=198061601]
-sprite_frames = SubResource("SpriteFrames_x44r4")
-animation = &"WalkLeft"
-autoplay = "IdleDown"
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=738956248]
+shape = SubResource("RectangleShape2D_4pqwa")
