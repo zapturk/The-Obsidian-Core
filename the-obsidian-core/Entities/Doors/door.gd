@@ -19,10 +19,8 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
-	if Input.is_action_just_pressed("ui_accept"):
-		Open()
-	if Input.is_action_just_pressed("ui_cancel"):
-		Close()
+	pass
+
 
 func Open() -> void:
 	# play animaiton
@@ -43,4 +41,5 @@ func SetDoorType(doorType: Types.DoorType) -> void:
 			solid.DisableSolid()
 		Types.DoorType.Wall:
 			$AnimatedSprite2D.play(posToString[pos] + "Wall")
+			solid.EnableSolid()
 		

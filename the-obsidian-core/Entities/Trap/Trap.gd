@@ -17,4 +17,3 @@ func _on_body_entered(body: Node2D) -> void:
 	# For now, we show the trap for any body that enters
 	triggered = true
 	sprite.visible = true
-	print("Trap triggered by: ", body.name)

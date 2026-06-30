@@ -18,38 +18,51 @@ func _ready() -> void:
 	spawn_dungeon(generate_floor())
 
 func generate_floor():
-	dungeon_grid.clear()
+	var retry = 0
+	var max_retries = 100
 	
-	# Start with the initial room at the center of our data grid
-	var start_pos = Vector2i(0, 0)
-	dungeon_grid[start_pos] = {"type": "START"}
-	
-	var room_queue = [start_pos]
-	var total_rooms = randi_range(MIN_ROOMS, MAX_ROOMS)
-	
-	while dungeon_grid.size() < total_rooms and room_queue.size() > 0:
-		var current_pos = room_queue.pick_random()
-		# If this room already has too many neighbors, move on to keep it linear
-		if count_neighbors(current_pos) > 2 and current_pos != start_pos:
-			room_queue.erase(current_pos)
-			continue
+	while true:
+		dungeon_grid.clear()
+		
+		# Start with the initial room at the center of our data grid
+		var start_pos = Vector2i(0, 0)
+		dungeon_grid[start_pos] = {"type": "START"}
+		
+		var room_queue = [start_pos]
+		var total_rooms = randi_range(MIN_ROOMS, MAX_ROOMS)
+		
+		while dungeon_grid.size() < total_rooms and room_queue.size() > 0:
+			var current_pos = room_queue.pick_random()
+			# If this room already has too many neighbors, move on to keep it linear
+			if count_neighbors(current_pos) > 2 and current_pos != start_pos:
+				room_queue.erase(current_pos)
+				continue
 			
-		var random_dir = DIRS.pick_random()
-		var target_pos = current_pos + random_dir
+			var random_dir = DIRS.pick_random()
+			var target_pos = current_pos + random_dir
+			
+			# Check boundaries and if space is empty
+			if not dungeon_grid.has(target_pos) and count_neighbors(target_pos) <= 1:
+				# Random chance to actually place it to create branches
+				if randf() > 0.4:
+					dungeon_grid[target_pos] = {"type": "NORMAL"}
+					room_queue.append(target_pos)
 		
-		# Check boundaries and if space is empty
-		if not dungeon_grid.has(target_pos) and count_neighbors(target_pos) <= 1:
-			# Random chance to actually place it to create branches
-			if randf() > 0.4:
-				dungeon_grid[target_pos] = {"type": "NORMAL"}
-				room_queue.append(target_pos)
-				
-	# If we failed to make enough rooms, just retry!
-	if dungeon_grid.size() < MIN_ROOMS:
-		return generate_floor()
+		if dungeon_grid.size() >= MIN_ROOMS:
+			assign_special_rooms()
+			return dungeon_grid
 		
-	assign_special_rooms()
-	return dungeon_grid
+		retry += 1
+		if retry >= max_retries:
+			# Hard fallback: force-fill remaining slots with NORMAL rooms
+			# so the game never gets stuck in an impossible state.
+			dungeon_grid.clear()
+			start_pos = Vector2i(0, 0)
+			dungeon_grid[start_pos] = {"type": "START"}
+			for i in range(MIN_ROOMS - 1):
+				dungeon_grid[Vector2i(i, 0)] = {"type": "NORMAL"}
+			assign_special_rooms()
+			return dungeon_grid
 
 func count_neighbors(pos: Vector2i) -> int:
 	var count = 0
@@ -69,7 +82,7 @@ func spawn_dungeon(grid_data: Dictionary):
 		
 		# Check who surrounds this room to open the right doors
 		var neighbors = []
-		for d in [Vector2i.UP, Vector2i.DOWN, Vector2i.LEFT, Vector2i.RIGHT]:
+		for d in DIRS:
 			if grid_data.has(pos + d):
 				neighbors.append(d)
 				
