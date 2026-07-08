@@ -3,6 +3,7 @@
 [ext_resource type="TileSet" uid="uid://c8oy2kcjqtwyo" path="res://Tiles/Dungeons.tres" id="1_7bmys"]
 [ext_resource type="Script" uid="uid://cp4jo41x2avs2" path="res://Scense/Rooms/room.gd" id="1_7ux1v"]
 [ext_resource type="PackedScene" uid="uid://dq6ino8lbnvla" path="res://Entities/Doors/Door.tscn" id="3_xefae"]
+[ext_resource type="PackedScene" uid="uid://l6e6m4varq6l" path="res://Entities/Monster/monster.tscn" id="4_aiuln"]
 
 [node name="Basic" type="Node2D" unique_id=240859222]
 script = ExtResource("1_7ux1v")
@@ -29,3 +30,6 @@ pos = 2
 [node name="DoorRight" parent="." unique_id=577989437 instance=ExtResource("3_xefae")]
 position = Vector2(248, 72)
 pos = 1
+
+[node name="Monster" parent="." unique_id=2091299320 instance=ExtResource("4_aiuln")]
+position = Vector2(72, 72)

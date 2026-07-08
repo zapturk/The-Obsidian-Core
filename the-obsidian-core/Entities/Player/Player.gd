@@ -73,6 +73,7 @@ func TryMove(direction: Vector2) -> void:
 		return
 
 	MoveTo(direction)
+	EventBus.PlayerActionTaken.emit(position)
 	
 
 func MoveTo(dir: Vector2) -> void:

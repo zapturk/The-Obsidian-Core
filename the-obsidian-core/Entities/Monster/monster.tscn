@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://l6e6m4varq6l"]
+
+[ext_resource type="Script" uid="uid://6h03mnxs8c1n" path="res://Entities/Monster/Monster.gd" id="1_fo5u3"]
+[ext_resource type="PackedScene" uid="uid://xcq36bahmjtm" path="res://Componets/SolidDetector.tscn" id="2_wnrtx"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_4pqwa"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4pqwa"]
+size = Vector2(16, 16)
+
+[node name="Monster" type="CharacterBody2D" unique_id=2091299320]
+script = ExtResource("1_fo5u3")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=1008649061]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=183641837]
+sprite_frames = SubResource("SpriteFrames_4pqwa")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2000828868]
+shape = SubResource("RectangleShape2D_4pqwa")
+
+[node name="SolidDetector" parent="." unique_id=666955636 instance=ExtResource("2_wnrtx")]
