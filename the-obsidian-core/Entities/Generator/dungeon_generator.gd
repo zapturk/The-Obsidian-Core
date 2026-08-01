@@ -91,6 +91,11 @@ func spawn_dungeon(grid_data: Dictionary):
 		# Apply cosmetics/special themes based on room_data["type"]
 		if room_data["type"] == "BOSS":
 			new_room.modulate = Color.CRIMSON # Simple visual tell for testing!
+		
+		# Name each monster uniquely based on room position
+		var monster = new_room.get_node("Monster")
+		if monster != null:
+			monster.my_name = "Monster@" + str(pos.x) + "," + str(pos.y)
 			
 func assign_special_rooms():
 	var dead_ends = []

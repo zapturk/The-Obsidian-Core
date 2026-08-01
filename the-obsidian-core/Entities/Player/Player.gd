@@ -72,8 +72,9 @@ func TryMove(direction: Vector2) -> void:
 		sprite.play("Idle" + getAniDir(CurrentDir))
 		return
 
+	var new_pos = position + (direction * Global.TILE_SIZE)
 	MoveTo(direction)
-	EventBus.PlayerActionTaken.emit(position)
+	EventBus.PlayerActionTaken.emit(new_pos)
 	
 
 func MoveTo(dir: Vector2) -> void:
